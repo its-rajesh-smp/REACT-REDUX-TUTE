@@ -1,16 +1,14 @@
-const reducer = (state = { count: 0 }, action) => {
-    switch (action.type) {
-        case "INCREAMENT": {
-            return { count: state.count + 2 }
-        }
-        case "DECREAMENT": {
-            return { count: state.count - 2 }
-        }
-        default: {
-            return state
-        }
+import { createSlice } from "@reduxjs/toolkit";
+
+const authReducer = createSlice({
+    name: "auth",
+    initialState: false,
+    reducers: {
+        login: () => { return true },
+        logOut: () => { return false }
     }
-}
+})
 
 
-export default reducer
+export const { login, logOut } = authReducer.actions
+export default authReducer

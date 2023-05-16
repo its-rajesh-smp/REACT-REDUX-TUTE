@@ -1,30 +1,38 @@
 import React from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { increament, decreament } from "./Redux/Actions";
-
+import { logOut, login } from "./Redux/Reducer";
 function App(props) {
   const dispatch = useDispatch();
-  const select = useSelector((state) => state.count);
+  const select = useSelector((state) => state.authReducer);
 
   return (
-    <div className=" App-div ">
-      <h1>CLICK ME</h1>
-      <h1>{select}</h1>
-      <button
-        onClick={() => {
-          dispatch(increament);
-        }}
-      >
-        INCREAMENT
-      </button>
-      <button
-        onClick={() => {
-          dispatch(decreament);
-        }}
-      >
-        DECREAMENT
-      </button>
+    <div>
+      {select && (
+        <div>
+          <h1>HEADER</h1>
+          <button
+            onClick={() => {
+              dispatch(logOut());
+            }}
+          >
+            LOGOUT
+          </button>
+        </div>
+      )}
+
+      {!select && (
+        <div>
+          <input placeholder="Email" type="text" name="" id="" />
+          <button
+            onClick={() => {
+              dispatch(login());
+            }}
+          >
+            LOGIN
+          </button>
+        </div>
+      )}
     </div>
   );
 }
